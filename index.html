@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEXX Token Presale</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1 class="logo-text">DEXX</h1>
+                </div>
+                <div class="header-actions">
+                    <button id="langToggle" class="lang-btn">EN</button>
+                    <button id="connectWalletBtn" class="connect-wallet-btn" data-i18n="connectWallet">Connect Wallet</button>
+                    <div id="walletInfo" class="wallet-info" style="display: none;">
+                        <div class="wallet-address" id="walletAddress"></div>
+                        <div class="wallet-balance" id="walletBalance"></div>
+                        <div class="wallet-chain" id="walletChain"></div>
+                        <button id="disconnectWalletBtn" class="disconnect-btn" data-i18n="disconnect">Disconnect</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2 class="hero-title" data-i18n="heroTitle">DEXX Token Presale</h2>
+                <p class="hero-subtitle" data-i18n="heroSubtitle">Join the future of decentralized AI trading</p>
+            </section>
+
+            <!-- Presale Info Card -->
+            <section class="presale-card">
+                <div class="presale-header">
+                    <h3 class="presale-title" data-i18n="presaleTitle">Presale Progress</h3>
+                    <div class="presale-deadline"><span data-i18n="deadline">截止:</span> <span id="deadlineDate">31/01/2026</span></div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-info">
+                        <span class="progress-label" data-i18n="progress">Progress</span>
+                        <span class="progress-percentage" id="progressPercentage">43.5%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <div class="presale-stats">
+                    <div class="stat-item">
+                        <div class="stat-label" data-i18n="totalSupply">Total Supply</div>
+                        <div class="stat-value">1,000,000,000 DEXX</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label" data-i18n="presalePrice">Presale Price</div>
+                        <div class="stat-value">$0.01 / DEXX</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label" data-i18n="minPurchase">Min Purchase</div>
+                        <div class="stat-value">500 USDT</div>
+                    </div>
+                </div>
+
+                <!-- User Participation Info -->
+                <div id="userParticipation" class="user-participation" style="display: none;">
+                    <div class="participation-header">
+                        <h4 data-i18n="yourParticipation">Your Participation</h4>
+                    </div>
+                    <div class="participation-amount">
+                        <span data-i18n="totalContributed">Total Contributed:</span>
+                        <span id="userContributedAmount" class="amount-value">0 USDT</span>
+                    </div>
+                </div>
+
+                <!-- Purchase Form -->
+                <div class="purchase-form">
+                    <div class="form-group">
+                        <label for="purchaseAmount" data-i18n="enterAmount">Enter Amount (USDT)</label>
+                        <div class="input-group">
+                            <input 
+                                type="number" 
+                                id="purchaseAmount" 
+                                class="amount-input" 
+                                placeholder="500" 
+                                min="500" 
+                                step="0.01"
+                            >
+                            <button id="maxBtn" class="max-btn" data-i18n="max">MAX</button>
+                        </div>
+                        <div class="input-hint" data-i18n="minAmount">Minimum: 500 USDT</div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="estimated-receive">
+                            <span data-i18n="youWillReceive">You will receive:</span>
+                            <span id="estimatedTokens" class="estimated-value">0 DEXX</span>
+                        </div>
+                    </div>
+
+                    <button id="participateBtn" class="participate-btn" disabled data-i18n="participate">Participate in Presale</button>
+                    <button id="participateAgainBtn" class="participate-again-btn" style="display: none;" disabled data-i18n="participateAgain">Participate Again</button>
+                </div>
+
+                <!-- Transaction Status -->
+                <div id="transactionStatus" class="transaction-status" style="display: none;">
+                    <div class="status-message" id="statusMessage"></div>
+                    <div class="tx-hash" id="txHash" style="display: none;"></div>
+                </div>
+            </section>
+
+            <!-- Tokenomics Section -->
+            <section class="tokenomics-section">
+                <h3 class="section-title" data-i18n="tokenomics">Tokenomics</h3>
+                <div class="tokenomics-grid">
+                    <div class="tokenomics-item">
+                        <div class="tokenomics-label" data-i18n="privateSale">Private Sale & Angel</div>
+                        <div class="tokenomics-value">10% (100M)</div>
+                    </div>
+                    <div class="tokenomics-item">
+                        <div class="tokenomics-label" data-i18n="publicSale">Public Sale / IDO</div>
+                        <div class="tokenomics-value">5% (50M)</div>
+                    </div>
+                    <div class="tokenomics-item">
+                        <div class="tokenomics-label" data-i18n="team">Team & Founders</div>
+                        <div class="tokenomics-value">15% (150M)</div>
+                    </div>
+                    <div class="tokenomics-item">
+                        <div class="tokenomics-label" data-i18n="advisors">Advisors & Partners</div>
+                        <div class="tokenomics-value">5% (50M)</div>
+                    </div>
+                    <div class="tokenomics-item">
+                        <div class="tokenomics-label" data-i18n="rewards">Rewards & Community</div>
+                        <div class="tokenomics-value">20% (200M)</div>
+                    </div>
+                    <div class="tokenomics-item">
+                        <div class="tokenomics-label" data-i18n="liquidity">Liquidity & Market Making</div>
+                        <div class="tokenomics-value">25% (250M)</div>
+                    </div>
+                    <div class="tokenomics-item">
+                        <div class="tokenomics-label" data-i18n="ecosystem">Ecosystem Fund</div>
+                        <div class="tokenomics-value">20% (200M)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Utility Section -->
+            <section class="utility-section">
+                <h3 class="section-title" data-i18n="tokenUtility">Token Utility</h3>
+                <div class="utility-list">
+                    <div class="utility-item" data-i18n="utility1">Trading fee discounts on DEX/CEX</div>
+                    <div class="utility-item" data-i18n="utility2">LP rewards & Staking rewards</div>
+                    <div class="utility-item" data-i18n="utility3">Platform governance (DAO voting rights)</div>
+                    <div class="utility-item" data-i18n="utility4">Priority access to new project Launchpad/IDO</div>
+                    <div class="utility-item" data-i18n="utility5">Airdrops & community incentives</div>
+                </div>
+            </section>
+
+            <!-- Partners Section -->
+            <section class="partners-section">
+                <div class="partners-header">
+                    <h3 class="section-title" data-i18n="partners">Partners</h3>
+                    <p class="partners-subtitle" data-i18n="partnersSubtitle">Trusted by leading platforms</p>
+                </div>
+                
+                <div class="partners-grid">
+                    <!-- BINANCE -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <span>BINANCE</span>
+                        </div>
+                        <div class="partner-name">BINANCE</div>
+                    </div>
+                    
+                    <!-- GATE -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <span>GATE</span>
+                        </div>
+                        <div class="partner-name">GATE</div>
+                    </div>
+                    
+                    <!-- MEXC -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <span>MEXC</span>
+                        </div>
+                        <div class="partner-name">MEXC</div>
+                    </div>
+                    
+                    <!-- OKX -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <span>OKX</span>
+                        </div>
+                        <div class="partner-name">OKX</div>
+                    </div>
+                    
+                    <!-- MINcrypto -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <span>MINcrypto</span>
+                        </div>
+                        <div class="partner-name">MINcrypto</div>
+                    </div>
+                    
+                    <!-- THREEFINANCE -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <span>THREEFINANCE</span>
+                        </div>
+                        <div class="partner-name">THREEFINANCE</div>
+                    </div>
+                    
+                    <!-- DEXX LAB -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <span>DEXX LAB</span>
+                        </div>
+                        <div class="partner-name">DEXX LAB</div>
+                    </div>
+                    
+                    <!-- YNLAB -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <span>YNLAB</span>
+                        </div>
+                        <div class="partner-name">YNLAB</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://twitter.com/dexxai_cn" target="_blank" class="footer-link" data-i18n="twitter">Twitter</a>
+                </div>
+                <div class="footer-text" data-i18n="footerText">© 2025 DEXX. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.7.1/dist/ethers.umd.min.js"></script>
+    <script>
+        // Wait for ethers to load before initializing
+        if (typeof ethers !== 'undefined') {
+            // Ethers already loaded
+            const script = document.createElement('script');
+            script.src = 'main.js';
+            document.body.appendChild(script);
+        } else {
+            // Wait for ethers to load
+            window.addEventListener('load', function() {
+                if (typeof ethers === 'undefined') {
+                    console.error('ethers.js failed to load. Trying alternative CDN...');
+                    // Try alternative CDN
+                    const script = document.createElement('script');
+                    script.src = 'https://unpkg.com/ethers@6.7.1/dist/ethers.umd.min.js';
+                    script.onload = function() {
+                        const mainScript = document.createElement('script');
+                        mainScript.src = 'dist/main.obf.js';
+                        document.body.appendChild(mainScript);
+                    };
+                    script.onerror = function() {
+                        alert('Failed to load ethers.js library. Please check your internet connection.');
+                    };
+                    document.body.appendChild(script);
+                } else {
+                    const script = document.createElement('script');
+                    script.src = 'dist/main.obf.js';
+                    document.body.appendChild(script);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+

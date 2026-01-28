@@ -1,0 +1,20 @@
+{
+  "name": "dexx-presale",
+  "version": "1.0.0",
+  "description": "DEXX Token Presale",
+  "main": "main.js",
+  "scripts": {
+    "build": "tsc && javascript-obfuscator dist/main.js --output dist/main.obf.js --compact true --control-flow-flattening true --dead-code-injection true --string-array true --string-array-encoding 'rc4' --string-array-threshold 0.75 --transform-object-keys true --unicode-escape-sequence true",
+    "compile": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.6"
+  },
+  "dependencies": {
+    "javascript-obfuscator": "^4.1.0"
+  }
+}
